@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4260258203">
-    <data-source source="LOCAL" name="MySQL - ipsendb@localhost" uuid="09be4dd8-560a-47de-a32e-40df28e2c344">
+  <component name="DataSourceManagerImpl" format="xml" hash="1581471285">
+    <data-source source="LOCAL" name="MySQL - ipsendb@192.168.1.5" uuid="4a79ef25-b486-4df0-acc4-9e80fa610186">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/ipsendb</jdbc-url>
+      <jdbc-url>jdbc:mysql://192.168.1.5:3306/ipsendb</jdbc-url>
       <driver-properties>
-        <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
         <property name="characterEncoding" value="utf8" />

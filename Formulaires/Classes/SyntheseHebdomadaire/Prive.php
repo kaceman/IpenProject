@@ -8,8 +8,10 @@
 
 namespace Formulaires\Classes\SyntheseHebdomadaire;
 
+require_once __DIR__ . '/../../Interfaces/Crud.php';
+use Formulaires\Interfaces\Crud;
 
-class Prive
+class Prive implements Crud
 {
     /**
      * @var int
@@ -105,6 +107,28 @@ class Prive
     public function setActionConcurrence($actionConcurrence)
     {
         $this->actionConcurrence = $actionConcurrence;
+    }
+
+    public function insertData($conn)
+    {
+        $sql = "INSERT INTO secteurprive (code_prive, medecin_sctPrive, actionIpsen_prive,actionConcurrence_prive)
+                    VALUES ('$this->code',
+                          '$this->medecin',
+                          '$this->actionIpsen',
+                          '$this->actionConcurrence')";
+
+        mysqli_query($conn, $sql);
+    }
+
+    public function updateData($conn, $id)
+    {
+        $sql = "UPDATE secteurprive SET
+                   code='$this->code',
+                   medecin='$this->medecin',
+                   actionIpsen='$this->actionIpsen',
+                   actionConcurrence='$this->actionConcurrence' WHERE id_prive='$id'";
+
+        mysqli_query($conn, $sql);
     }
 
 
