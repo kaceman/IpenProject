@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/Informations/Commandes/Commande.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/Informations/InfoClinique.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/Informations/Objectif/Objectif.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/Informations/infoGrossisterie.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/Itineraire/Itineraire.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/ListingVisites/Prive/Cabinet.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/ListingVisites/Publique/CentreSante.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/ListingVisites/Publique/Hopital.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/ListingVisites/Publique/Organisme.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/ListingVisites/Publique/Urgence.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/Medecins/Medecin.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/SyntheseHebdomadaire/Prive.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/SyntheseHebdomadaire/Produit.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/SyntheseHebdomadaire/Publique.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Formulaires/Classes/SyntheseHebdomadaire/Region.php" dialect="MySQL" />
+  </component>
+</project>
