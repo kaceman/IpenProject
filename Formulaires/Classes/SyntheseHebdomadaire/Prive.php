@@ -111,7 +111,7 @@ class Prive implements Crud
 
     public function insertData($conn)
     {
-        $sql = "INSERT INTO secteurprive (code_prive, medecin_sctPrive, actionIpsen_prive,actionConcurrence_prive)
+        $sql = "INSERT INTO ipsendb.secteurprive (code_prive, medecin_sctPrive, actionIpsen_prive,actionConcurrence_prive)
                     VALUES ('$this->code',
                           '$this->medecin',
                           '$this->actionIpsen',
@@ -122,11 +122,11 @@ class Prive implements Crud
 
     public function updateData($conn, $id)
     {
-        $sql = "UPDATE secteurprive SET
-                   code='$this->code',
-                   medecin='$this->medecin',
-                   actionIpsen='$this->actionIpsen',
-                   actionConcurrence='$this->actionConcurrence' WHERE id_prive='$id'";
+        $sql = "UPDATE ipsendb.secteurprive SET
+                   code_prive='$this->code',
+                   medecin_sctPrive='$this->medecin',
+                   actionIpsen_prive='$this->actionIpsen',
+                   actionConcurrence_prive='$this->actionConcurrence' WHERE id_prive='$id'";
 
         mysqli_query($conn, $sql);
     }

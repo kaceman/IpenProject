@@ -22,7 +22,7 @@
     $objConn = new Connexion();
     $conn = $objConn->connectToDB();
 
-    $sql = "SELECT * FROM secteurprives";
+    $sql = "SELECT * FROM secteurprive";
 
     $result = $conn->query($sql);
 

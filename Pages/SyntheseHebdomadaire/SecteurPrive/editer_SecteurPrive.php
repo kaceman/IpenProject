@@ -21,7 +21,7 @@
         if ($_GET['fonction'] == 'editer') {
             $id = $_GET['id'];
 
-            $sql = "SELECT * FROM secteurprive WHERE id_prive='$id'";
+            $sql = "SELECT * FROM ipsendb.secteurprive WHERE id_prive='$id'";
 
             $result = $conn->query($sql);
 
@@ -37,7 +37,7 @@
         } elseif ($_GET['fonction'] == 'supprimer') {
             $id = $_GET['id'];
 
-            $sql = "DELETE FROM secteurprive WHERE id_prive='$id'";
+            $sql = "DELETE FROM ipsendb.secteurprive WHERE id_prive='$id'";
 
             $conn->query($sql);
 
@@ -54,7 +54,7 @@
         $actionipsen = $_POST['actionipsen'];
         $actionconcurrence = $_POST['actionconcurrence'];
 
-        $obj = new secteurprive($code, $medecin, $actionipsen, $actionconcurrence);
+        $obj = new Prive($code, $medecin, $actionipsen, $actionconcurrence);
 
         $obj->updateData($conn, $id);
     }
@@ -79,10 +79,10 @@
     <input type="text" id="medecin" name="medecin" value="<?= $medecin ?>"><br>
 
     <label for="actionipsen">Action Ipsen</label>
-    <input type="number" id="actionipsen" name="actionipsen" value="<?= $actionipsen ?>"><br>
+    <input type="text" id="actionipsen" name="actionipsen" value="<?= $actionipsen ?>"><br>
 
     <label for="actionconcurrence">Action Concurrence</label>
-    <input type="number" id="actionconcurrence" name="actionconcurrence" value="<?= $actionconcurrence ?>"><br>
+    <input type="text" id="actionconcurrence" name="actionconcurrence" value="<?= $actionconcurrence ?>"><br>
 
     <input type="submit" name="ajouter" value="Modifier"/>
 </form>
