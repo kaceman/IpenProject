@@ -6,8 +6,11 @@
     require_once __DIR__ . '/../../../Connexion/Connexion.php';
     use Connexion\Connexion;
 
+    $objConn = new Connexion();
+    $conn = $objConn->connectToDB();
+
     $code = $_POST['code'];
-    $medecin = $_POST['medecin'];
+    $id_medecin = $_POST['medecin'];
     $specialite = $_POST['specialite'];
     $dateVisite = $_POST['datevisite'];
     $a = $_POST['a'];
@@ -15,13 +18,8 @@
     $c = $_POST['c'];
     $remarque = $_POST['remarque'];
     $region = $_POST['region'];
-    
 
-
-    $obj = new Cabinet($code, $medecin, $specialite, $dateVisite, $a, $b, $c, $remarque, $region);
-
-    $objConn = new Connexion();
-    $conn = $objConn->connectToDB();
+    $obj = new Cabinet($code, $id_medecin, $specialite, $dateVisite, $a, $b, $c, $remarque, $region);
 
     $obj->insertData($conn);
 

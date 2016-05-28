@@ -5,12 +5,36 @@
         <title>IPSEN - Cabinet</title>
     </head>
     <body>
+    <?php
+    require_once __DIR__ . '/../../../Connexion/Connexion.php';
+    use Connexion\Connexion;
+
+    $objConn = new Connexion();
+    $conn = $objConn->connectToDB();
+
+    $sql = "SELECT * FROM ipsendb.medecin";
+
+    $result = $conn->query($sql);
+
+
+    ?>
+
         <form action="traitement_Cabinet.php" method="post">
             <label for="code">Code</label>
             <input type="text" id="code" name="code"><br>
 
             <label for="medecin">Medecin</label>
-            <input type="text" id="medecin" name="medecin"><br>
+            <select id="medecin" name="medecin">
+                <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<option value="' . $row['id_medecin'] . '">' . $row['nom_medecin'] . '</option>';
+                        }
+                    }
+
+                    $objConn->closeConnection();
+                ?>
+            </select><br>
 
             <label for="specialite">Spécialité</label>
             <input type="text" id="specialite" name="specialite"><br>

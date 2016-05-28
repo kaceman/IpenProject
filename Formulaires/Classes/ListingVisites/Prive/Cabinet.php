@@ -19,9 +19,9 @@ class Cabinet implements Crud
     private $code;
 
     /**
-     * @var string
+     * @var int
      */
-    private $medecin;
+    private $id_medecin;
 
     /**
      * @var string
@@ -61,7 +61,7 @@ class Cabinet implements Crud
     /**
      * Cabinet constructor.
      * @param int $code
-     * @param string $medecin
+     * @param int $id_medecin
      * @param string $specialite
      * @param string $dateVisite
      * @param int $a
@@ -70,10 +70,10 @@ class Cabinet implements Crud
      * @param string $remarques
      * @param string $region
      */
-    public function __construct($code, $medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
+    public function __construct($code, $id_medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
     {
         $this->code = $code;
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
         $this->specialite = $specialite;
         $this->dateVisite = $dateVisite;
         $this->a = $a;
@@ -100,19 +100,19 @@ class Cabinet implements Crud
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getMedecin()
+    public function getIdMedecin()
     {
-        return $this->medecin;
+        return $this->id_medecin;
     }
 
     /**
-     * @param string $medecin
+     * @param int $id_medecin
      */
-    public function setMedecin($medecin)
+    public function setIdMedecin($id_medecin)
     {
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
     }
 
     /**
@@ -227,11 +227,13 @@ class Cabinet implements Crud
         $this->region = $region;
     }
 
+
+
     public function insertData($conn)
     {
-        $sql = "INSERT INTO cabinet (code_Cabinet, MedecinPriv_Cabinet, specialite_Cabinet, dateVisite_Cabinet, a_Cabinet, b_Cabinet, c_Cabinet, remarques_Cabinet, region_Cabinet)
+        $sql = "INSERT INTO ipsendb.cabinet (code_Cabinet, id_medecin, specialite_Cabinet, dateVisite_Cabinet, a_Cabinet, b_Cabinet, c_Cabinet, remarques_Cabinet, region_Cabinet)
                     VALUES ('$this->code',
-                          '$this->medecin',
+                          '$this->id_medecin',
                           '$this->specialite',
                           STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                           '$this->a',
@@ -246,13 +248,13 @@ class Cabinet implements Crud
 
     public function updateData($conn, $id)
     {
-        $sql = "UPDATE cabinet SET code_Cabinet='$this->code',
-                                    MedecinPriv_Cabinet='$this->medecin',
+        $sql = "UPDATE ipsendb.cabinet SET code_Cabinet='$this->code',
+                                    id_medecin='$this->id_medecin',
                                     specialite_Cabinet='$this->specialite',
                                     dateVisite_Cabinet=STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                                     a_Cabinet='$this->a',
                                     b_Cabinet='$this->b',
-                                    code_Cabinet='$this->c',
+                                    c_Cabinet='$this->c',
                                     remarques_Cabinet='$this->remarques',
                                     region_Cabinet='$this->region' WHERE id_Cabinet='$id'";
 

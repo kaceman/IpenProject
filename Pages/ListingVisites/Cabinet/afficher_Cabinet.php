@@ -27,25 +27,32 @@
     $objConn = new Connexion();
     $conn = $objConn->connectToDB();
 
-    $sql = "SELECT * FROM cabinet";
+    $sql1 = "SELECT * FROM ipsendb.cabinet";
 
-    $result = $conn->query($sql);
+    $result1 = $conn->query($sql1);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+
+    if ($result1->num_rows > 0) {
+        while ($row1 = $result1->fetch_assoc()) {
             echo '<tr>';
-            echo '  <td>' . $row['code_Cabinet'] . '</td>';
-            echo '  <td>' . $row['MedecinPriv_Cabinet'] . '</td>';
-            echo '  <td>' . $row['specialite_Cabinet'] . '</td>';
-            echo '  <td>' . $row['dateVisite_Cabinet'] . '</td>';
-            echo '  <td>' . $row['a_Cabinet'] . '</td>';
-            echo '  <td>' . $row['b_Cabinet'] . '</td>';
-            echo '  <td>' . $row['c_Cabinet'] . '</td>';
-            echo '  <td>' . $row['remarques_Cabinet'] . '</td>';
-            echo '  <td>' . $row['region_Cabinet'] . '</td>';
+            echo '  <td>' . $row1['code_Cabinet'] . '</td>';
+
+            $id_medecin = $row1['id_medecin'];
+            $sql2 = "SELECT * FROM ipsendb.medecin WHERE id_medecin='$id_medecin'";
+            $result2 = $conn->query($sql2);
+            $row2 = $result2->fetch_assoc();
+            echo '  <td><a href="../../Medecin/info_Medecin.php?id=' . $row2['id_medecin'] . '">' . $row2['nom_medecin'] . '</a></td>';
+
+            echo '  <td>' . $row1['specialite_Cabinet'] . '</td>';
+            echo '  <td>' . $row1['dateVisite_Cabinet'] . '</td>';
+            echo '  <td>' . $row1['a_Cabinet'] . '</td>';
+            echo '  <td>' . $row1['b_Cabinet'] . '</td>';
+            echo '  <td>' . $row1['c_Cabinet'] . '</td>';
+            echo '  <td>' . $row1['remarques_Cabinet'] . '</td>';
+            echo '  <td>' . $row1['region_Cabinet'] . '</td>';
             echo '  <td>
-                        <a href="editer_Cabinet.php?id=' . $row['id_Cabinet'] . '&fonction=editer">Editer</a>
-                        <a href="editer_Cabinet.php?id=' . $row['id_Cabinet'] . '&fonction=supprimer">Supprimer</a>
+                        <a href="editer_Cabinet.php?id=' . $row1['id_Cabinet'] . '&fonction=editer">Editer</a>
+                        <a href="editer_Cabinet.php?id=' . $row1['id_Cabinet'] . '&fonction=supprimer">Supprimer</a>
                     </td>';
             echo '</tr>';
         }
