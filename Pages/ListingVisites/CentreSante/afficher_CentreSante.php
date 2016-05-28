@@ -28,26 +28,32 @@
     $objConn = new Connexion();
     $conn = $objConn->connectToDB();
 
-    $sql = "SELECT * FROM centresante";
+    $sql1 = "SELECT * FROM ipsendb.centresante";
 
-    $result = $conn->query($sql);
+    $result1 = $conn->query($sql1);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if ($result1->num_rows > 0) {
+        while ($row1 = $result1->fetch_assoc()) {
             echo '<tr>';
-            echo '  <td>' . $row['code_centreSante'] . '</td>';
-            echo '  <td>' . $row['centreSante'] . '</td>';
-            echo '  <td>' . $row['Medecin_centreSante'] . '</td>';
-            echo '  <td>' . $row['specialite_centreSante'] . '</td>';
-            echo '  <td>' . $row['date_centreSante'] . '</td>';
-            echo '  <td>' . $row['a_centreSante'] . '</td>';
-            echo '  <td>' . $row['b_centreSante'] . '</td>';
-            echo '  <td>' . $row['c_centreSante'] . '</td>';
-            echo '  <td>' . $row['remarques_centreSante'] . '</td>';
-            echo '  <td>' . $row['region_centreSante'] . '</td>';
+            echo '  <td>' . $row1['code_centreSante'] . '</td>';
+            echo '  <td>' . $row1['centreSante'] . '</td>';
+
+            $id_medecin = $row1['id_medecin'];
+            $sql2 = "SELECT * FROM ipsendb.medecin WHERE id_medecin='$id_medecin'";
+            $result2 = $conn->query($sql2);
+            $row2 = $result2->fetch_assoc();
+            echo '  <td><a href="../../Medecin/info_Medecin.php?id=' . $row2['id_medecin'] . '">' . $row2['nom_medecin'] . '</a></td>';
+
+            echo '  <td>' . $row1['specialite_centreSante'] . '</td>';
+            echo '  <td>' . $row1['date_centreSante'] . '</td>';
+            echo '  <td>' . $row1['a_centreSante'] . '</td>';
+            echo '  <td>' . $row1['b_centreSante'] . '</td>';
+            echo '  <td>' . $row1['c_centreSante'] . '</td>';
+            echo '  <td>' . $row1['remarques_centreSante'] . '</td>';
+            echo '  <td>' . $row1['region_centreSante'] . '</td>';
             echo '  <td>
-                        <a href="editer_CentreSante.php?id=' . $row['id_centreSante'] . '&fonction=editer">Editer</a>
-                        <a href="editer_CentreSante.php?id=' . $row['id_centreSante'] . '&fonction=supprimer">Supprimer</a>
+                        <a href="editer_CentreSante.php?id=' . $row1['id_centreSante'] . '&fonction=editer">Editer</a>
+                        <a href="editer_CentreSante.php?id=' . $row1['id_centreSante'] . '&fonction=supprimer">Supprimer</a>
                     </td>';
             echo '</tr>';
         }

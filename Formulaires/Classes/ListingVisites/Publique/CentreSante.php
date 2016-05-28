@@ -24,9 +24,9 @@ class CentreSante implements Crud
     private $cs;
 
     /**
-     * @var string
+     * @var int
      */
-    private $medecin;
+    private $id_medecin;
 
     /**
      * @var string
@@ -67,7 +67,7 @@ class CentreSante implements Crud
      * CentreSante constructor.
      * @param int $code
      * @param string $cs
-     * @param string $medecin
+     * @param int $id_medecin
      * @param string $specialite
      * @param string $dateVisite
      * @param int $a
@@ -76,11 +76,11 @@ class CentreSante implements Crud
      * @param string $remarques
      * @param string $region
      */
-    public function __construct($code, $cs, $medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
+    public function __construct($code, $cs, $id_medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
     {
         $this->code = $code;
         $this->cs = $cs;
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
         $this->specialite = $specialite;
         $this->dateVisite = $dateVisite;
         $this->a = $a;
@@ -123,19 +123,19 @@ class CentreSante implements Crud
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getMedecin()
+    public function getIdMedecin()
     {
-        return $this->medecin;
+        return $this->id_medecin;
     }
 
     /**
-     * @param string $medecin
+     * @param int $id_medecin
      */
-    public function setMedecin($medecin)
+    public function setIdMedecin($id_medecin)
     {
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
     }
 
     /**
@@ -250,12 +250,14 @@ class CentreSante implements Crud
         $this->region = $region;
     }
 
+
+
     public function insertData($conn)
     {
-        $sql = "INSERT INTO centresante (code_centreSante, centreSante, Medecin_centreSante, specialite_centreSante, date_centreSante, a_centreSante, b_centreSante, c_centreSante, remarques_centreSante, region_centreSante)
+        $sql = "INSERT INTO ipsendb.centresante (code_centreSante, centreSante, id_medecin, specialite_centreSante, date_centreSante, a_centreSante, b_centreSante, c_centreSante, remarques_centreSante, region_centreSante)
                     VALUES ('$this->code',
                           '$this->cs',
-                          '$this->medecin',
+                          '$this->id_medecin',
                           '$this->specialite',
                           STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                           '$this->a',
@@ -269,9 +271,9 @@ class CentreSante implements Crud
 
     public function updateData($conn, $id)
     {
-        $sql = "UPDATE centresante SET code_centreSante='$this->code',
+        $sql = "UPDATE ipsendb.centresante SET code_centreSante='$this->code',
                                     centreSante='$this->cs',
-                                    Medecin_centreSante='$this->medecin',
+                                    id_medecin='$this->id_medecin',
                                     specialite_centreSante='$this->specialite',
                                     date_centreSante=STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                                     a_centreSante='$this->a',

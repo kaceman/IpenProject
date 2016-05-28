@@ -8,7 +8,7 @@
 
     $code = $_POST['code'];
     $cs = $_POST['cs'];
-    $medecin = $_POST['medecin'];
+    $id_medecin = $_POST['medecin'];
     $specialite = $_POST['specialite'];
     $dateVisite = $_POST['datevisite'];
     $a = $_POST['a'];
@@ -18,7 +18,7 @@
     $region = $_POST['region'];
 
 
-    $obj = new CentreSante($code, $cs, $medecin, $specialite, $dateVisite, $a, $b, $c, $remarque, $region);
+    $obj = new CentreSante($code, $cs, $id_medecin, $specialite, $dateVisite, $a, $b, $c, $remarque, $region);
 
     $objConn = new Connexion();
     $conn = $objConn->connectToDB();

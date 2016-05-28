@@ -49,8 +49,6 @@
 
             $objConn->closeConnection();
 
-            $objConn->closeConnection();
-
             header('Location: afficher_Cabinet.php');
         }
 
