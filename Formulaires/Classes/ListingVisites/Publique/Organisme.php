@@ -17,9 +17,9 @@ class Organisme implements Crud
     private $organisme;
 
     /**
-     * @var string
+     * @var int
      */
-    private $medecin;
+    private $id_medecin;
 
     /**
      * @var string
@@ -60,7 +60,7 @@ class Organisme implements Crud
      * Organisme constructor.
      * @param int $code
      * @param string $organisme
-     * @param string $medecin
+     * @param int $id_medecin
      * @param string $specialite
      * @param string $dateVisite
      * @param int $a
@@ -69,11 +69,11 @@ class Organisme implements Crud
      * @param string $remarques
      * @param string $region
      */
-    public function __construct($code, $organisme, $medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
+    public function __construct($code, $organisme, $id_medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
     {
         $this->code = $code;
         $this->organisme = $organisme;
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
         $this->specialite = $specialite;
         $this->dateVisite = $dateVisite;
         $this->a = $a;
@@ -116,19 +116,19 @@ class Organisme implements Crud
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getMedecin()
+    public function getIdMedecin()
     {
-        return $this->medecin;
+        return $this->id_medecin;
     }
 
     /**
-     * @param string $medecin
+     * @param int $id_medecin
      */
-    public function setMedecin($medecin)
+    public function setIdMedecin($id_medecin)
     {
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
     }
 
     /**
@@ -245,10 +245,10 @@ class Organisme implements Crud
 
     public function insertData($conn)
     {
-        $sql = "INSERT INTO organisme (code_organisme, organisme, medecin_organisme, specialite_organisme, dateVisite_organisme, A_organisme, B_organisme, C_organisme, remarques_organisme, region_organisme)
+        $sql = "INSERT INTO ipsendb.organisme (code_organisme, organisme, id_medecin, specialite_organisme, dateVisite_organisme, A_organisme, B_organisme, C_organisme, remarques_organisme, region_organisme)
                     VALUES ('$this->code',
                           '$this->organisme',
-                          '$this->medecin',
+                          '$this->id_medecin',
                           '$this->specialite',
                           STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                           '$this->a',
@@ -262,9 +262,9 @@ class Organisme implements Crud
 
     public function updateData($conn, $id)
     {
-        $sql = "UPDATE organisme SET code_organisme='$this->code',
+        $sql = "UPDATE ipsendb.organisme SET code_organisme='$this->code',
                                     organisme='$this->organisme',
-                                    medecin_organisme='$this->medecin',
+                                    id_medecin='$this->id_medecin',
                                     specialite_organisme='$this->specialite',
                                     dateVisite_organisme=STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                                     A_organisme='$this->a',

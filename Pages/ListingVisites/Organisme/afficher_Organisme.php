@@ -28,26 +28,32 @@
     $objConn = new Connexion();
     $conn = $objConn->connectToDB();
 
-    $sql = "SELECT * FROM organisme";
+    $sql1 = "SELECT * FROM ipsendb.organisme";
 
-    $result = $conn->query($sql);
+    $result1 = $conn->query($sql1);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if ($result1->num_rows > 0) {
+        while ($row1 = $result1->fetch_assoc()) {
             echo '<tr>';
-            echo '  <td>' . $row['code_organisme'] . '</td>';
-            echo '  <td>' . $row['organisme'] . '</td>';
-            echo '  <td>' . $row['medecin_organisme'] . '</td>';
-            echo '  <td>' . $row['specialite_organisme'] . '</td>';
-            echo '  <td>' . $row['dateVisite_organisme'] . '</td>';
-            echo '  <td>' . $row['A_organisme'] . '</td>';
-            echo '  <td>' . $row['B_organisme'] . '</td>';
-            echo '  <td>' . $row['C_organisme'] . '</td>';
-            echo '  <td>' . $row['remarques_organisme'] . '</td>';
-            echo '  <td>' . $row['region_organisme'] . '</td>';
+            echo '  <td>' . $row1['code_organisme'] . '</td>';
+            echo '  <td>' . $row1['organisme'] . '</td>';
+
+            $id_medecin = $row1['id_medecin'];
+            $sql2 = "SELECT * FROM ipsendb.medecin WHERE id_medecin='$id_medecin'";
+            $result2 = $conn->query($sql2);
+            $row2 = $result2->fetch_assoc();
+            echo '  <td><a href="../../Medecin/info_Medecin.php?id=' . $row2['id_medecin'] . '">' . $row2['nom_medecin'] . '</a></td>';
+
+            echo '  <td>' . $row1['specialite_organisme'] . '</td>';
+            echo '  <td>' . $row1['dateVisite_organisme'] . '</td>';
+            echo '  <td>' . $row1['A_organisme'] . '</td>';
+            echo '  <td>' . $row1['B_organisme'] . '</td>';
+            echo '  <td>' . $row1['C_organisme'] . '</td>';
+            echo '  <td>' . $row1['remarques_organisme'] . '</td>';
+            echo '  <td>' . $row1['region_organisme'] . '</td>';
             echo '  <td>
-                        <a href="editer_Organisme.php?id=' . $row['id__organisme'] . '&fonction=editer">Editer</a>
-                        <a href="editer_Organisme.php?id=' . $row['id__organisme'] . '&fonction=supprimer">Supprimer</a>
+                        <a href="editer_Organisme.php?id=' . $row1['id__organisme'] . '&fonction=editer">Editer</a>
+                        <a href="editer_Organisme.php?id=' . $row1['id__organisme'] . '&fonction=supprimer">Supprimer</a>
                     </td>';
             echo '</tr>';
         }
