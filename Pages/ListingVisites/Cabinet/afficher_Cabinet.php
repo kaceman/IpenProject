@@ -31,7 +31,6 @@
 
     $result1 = $conn->query($sql1);
 
-
     if ($result1->num_rows > 0) {
         while ($row1 = $result1->fetch_assoc()) {
             echo '<tr>';

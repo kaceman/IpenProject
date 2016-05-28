@@ -29,6 +29,9 @@
     <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Organisme/afficher_Organisme.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Organisme/ajouter_Organisme.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Organisme/editer_Organisme.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Urgence/afficher_Urgence.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Urgence/ajouter_Urgence.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Urgence/editer_Urgence.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/Medecin/info_Medecin.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/SyntheseHebdomadaire/EnqueteProduit/editer_EnqueteProduit.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/SyntheseHebdomadaire/SecteurPrive/editer_SecteurPrive.php" dialect="MySQL" />

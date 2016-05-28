@@ -24,9 +24,9 @@ class Urgence implements Crud
     private $urgence;
 
     /**
-     * @var string
+     * @var int
      */
-    private $medecin;
+    private $id_medecin;
 
     /**
      * @var string
@@ -52,17 +52,17 @@ class Urgence implements Crud
      * Urgence constructor.
      * @param int $code
      * @param string $urgence
-     * @param string $medecin
+     * @param int $id_medecin
      * @param string $specialite
      * @param string $dateVisite
      * @param string $remarques
      * @param string $region
      */
-    public function __construct($code, $urgence, $medecin, $specialite, $dateVisite, $remarques, $region)
+    public function __construct($code, $urgence, $id_medecin, $specialite, $dateVisite, $remarques, $region)
     {
         $this->code = $code;
         $this->urgence = $urgence;
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
         $this->specialite = $specialite;
         $this->dateVisite = $dateVisite;
         $this->remarques = $remarques;
@@ -102,19 +102,19 @@ class Urgence implements Crud
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getMedecin()
+    public function getIdMedecin()
     {
-        return $this->medecin;
+        return $this->id_medecin;
     }
 
     /**
-     * @param string $medecin
+     * @param int $id_medecin
      */
-    public function setMedecin($medecin)
+    public function setIdMedecin($id_medecin)
     {
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
     }
 
     /**
@@ -180,13 +180,13 @@ class Urgence implements Crud
     {
         $this->region = $region;
     }
-
+    
     public function insertData($conn)
     {
-        $sql = "INSERT INTO urgence (code_urgence, urgence, medecin_urgence, specialite_urgence, dateVisite_urgence, remarques_urgence, region_urgence)
+        $sql = "INSERT INTO ipsendb.urgence (code_urgence, urgence, id_medecin, specialite_urgence, dateVisite_urgence, remarques_urgence, region_urgence)
                     VALUES ('$this->code',
                           '$this->urgence',
-                          '$this->medecin',
+                          '$this->id_medecin',
                           '$this->specialite',
                           STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                           '$this->remarques',
@@ -197,9 +197,9 @@ class Urgence implements Crud
 
     public function updateData($conn, $id)
     {
-        $sql = "UPDATE urgence SET code_urgence='$this->code',
+        $sql = "UPDATE ipsendb.urgence SET code_urgence='$this->code',
                                     urgence='$this->urgence',
-                                    medecin_urgence='$this->medecin',
+                                    id_medecin='$this->id_medecin',
                                     specialite_urgence='$this->specialite',
                                     dateVisite_urgence=STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                                     remarques_urgence='$this->remarques',

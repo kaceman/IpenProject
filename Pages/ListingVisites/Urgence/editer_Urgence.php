@@ -12,7 +12,7 @@
     $id = "";
     $code = "";
     $urgence = "";
-    $medecin = "";
+    $id_medecin = "";
     $specalite = "";
     $dateVisite = "";
     $remarque = "";
@@ -24,25 +24,22 @@
         if ($_GET['fonction'] == 'editer') {
             $id = $_GET['id'];
 
-            $sql = "SELECT * FROM urgence WHERE id_urgence='$id'";
-
+            $sql = "SELECT * FROM ipsendb.urgence WHERE id_urgence='$id'";
             $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $code = $row['code_urgence'];
-                    $urgence = $row['urgence'];
-                    $medecin = $row['medecin_urgence'];
-                    $specalite = $row['specialite_urgence'];
-                    $dateVisite = $row['dateVisite_urgence'];
-                    $remarque = $row['remarques_urgence'];
-                    $region = $row['region_urgence'];
-                }
-            }
+            $code = $row['code_urgence'];
+            $urgence = $row['urgence'];
+            $id_medecin = $row['id_medecin'];
+            $specalite = $row['specialite_urgence'];
+            $dateVisite = $row['dateVisite_urgence'];
+            $remarque = $row['remarques_urgence'];
+            $region = $row['region_urgence'];
+
         } elseif ($_GET['fonction'] == 'supprimer') {
             $id = $_GET['id'];
 
-            $sql = "DELETE FROM urgence WHERE id_urgence='$id'";
+            $sql = "DELETE FROM ipsendb.urgence WHERE id_urgence='$id'";
 
             $conn->query($sql);
 
@@ -65,9 +62,11 @@
         $obj = new Urgence($code, $urgence, $medecin, $specalite, $dateVisite, $remarque, $region);
 
         $obj->updateData($conn, $id);
-    }
 
-    $objConn->closeConnection();
+        $objConn->closeConnection();
+
+        header('Location: afficher_Urgence.php');
+    }
 ?>
 
 <!doctype html>
@@ -87,7 +86,26 @@
     <input type="text" id="urgence" name="urgence" value="<?= $urgence ?>"><br>
 
     <label for="medecin">Medecin</label>
-    <input type="text" id="medecin" name="medecin" value="<?= $medecin ?>"><br>
+    <select id="medecin" name="medecin">
+        <?php
+        $sql = "SELECT * FROM ipsendb.medecin";
+
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if($id_medecin == $row['id_medecin']){
+                    echo '<option value="' . $row['id_medecin'] . '" selected>' . $row['nom_medecin'] . '</option>';
+                } else {
+                    echo '<option value="' . $row['id_medecin'] . '">' . $row['nom_medecin'] . '</option>';
+                }
+            }
+        }
+
+        $objConn->closeConnection();
+
+        ?>
+    </select><br>
 
     <label for="specialite">Spécialité</label>
     <input type="text" id="specialite" name="specialite" value="<?= $specalite ?>"><br>
