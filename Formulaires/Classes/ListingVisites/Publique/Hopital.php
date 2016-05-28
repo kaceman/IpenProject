@@ -22,9 +22,9 @@ class Hopital implements Crud
     private $service;
 
     /**
-     * @var string
+     * @var int
      */
-    private $medecin;
+    private $id_medecin;
 
     /**
      * @var string
@@ -66,7 +66,7 @@ class Hopital implements Crud
      * @param int $code
      * @param string $hopital
      * @param string $service
-     * @param string $medecin
+     * @param int $id_medecin
      * @param string $specialite
      * @param string $dateVisite
      * @param int $a
@@ -75,12 +75,12 @@ class Hopital implements Crud
      * @param string $remarques
      * @param string $region
      */
-    public function __construct($code, $hopital, $service, $medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
+    public function __construct($code, $hopital, $service, $id_medecin, $specialite, $dateVisite, $a, $b, $c, $remarques, $region)
     {
         $this->code = $code;
         $this->hopital = $hopital;
         $this->service = $service;
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
         $this->specialite = $specialite;
         $this->dateVisite = $dateVisite;
         $this->a = $a;
@@ -139,19 +139,19 @@ class Hopital implements Crud
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getMedecin()
+    public function getIdMedecin()
     {
-        return $this->medecin;
+        return $this->id_medecin;
     }
 
     /**
-     * @param string $medecin
+     * @param int $id_medecin
      */
-    public function setMedecin($medecin)
+    public function setIdMedecin($id_medecin)
     {
-        $this->medecin = $medecin;
+        $this->id_medecin = $id_medecin;
     }
 
     /**
@@ -266,14 +266,13 @@ class Hopital implements Crud
         $this->region = $region;
     }
 
-
     public function insertData($conn)
     {
-        $sql = "INSERT INTO hopital (code_hopital, hopital, service_hopital, medecin_hopital, specialite_hopital, dateVisite_hopital, A_hopital, B_hopital, C_hopital, remarques_hopital, region_hopital)
+        $sql = "INSERT INTO ipsendb.hopital (code_hopital, hopital, service_hopital, id_medecin, specialite_hopital, dateVisite_hopital, A_hopital, B_hopital, C_hopital, remarques_hopital, region_hopital)
                     VALUES ('$this->code',
                           '$this->hopital',
                           '$this->service',
-                          '$this->medecin',
+                          '$this->id_medecin',
                           '$this->specialite',
                           STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                           '$this->a',
@@ -287,10 +286,10 @@ class Hopital implements Crud
 
     public function updateData($conn, $id)
     {
-        $sql = "UPDATE hopital SET code_hopital='$this->code',
+        $sql = "UPDATE ipsendb.hopital SET code_hopital='$this->code',
                                     hopital='$this->hopital',
                                     service_hopital='$this->service',
-                                    medecin_hopital='$this->medecin',
+                                    id_medecin='$this->id_medecin',
                                     specialite_hopital='$this->specialite',
                                     dateVisite_hopital=STR_TO_DATE('$this->dateVisite', '%Y-%m-%d'),
                                     A_hopital='$this->a',

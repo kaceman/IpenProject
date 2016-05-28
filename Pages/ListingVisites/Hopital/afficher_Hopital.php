@@ -29,27 +29,33 @@
     $objConn = new Connexion();
     $conn = $objConn->connectToDB();
 
-    $sql = "SELECT * FROM hopital";
+    $sql1 = "SELECT * FROM ipsendb.hopital";
 
-    $result = $conn->query($sql);
+    $result1 = $conn->query($sql1);
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if ($result1->num_rows > 0) {
+        while ($row1 = $result1->fetch_assoc()) {
             echo '<tr>';
-            echo '  <td>' . $row['code_hopital'] . '</td>';
-            echo '  <td>' . $row['hopital'] . '</td>';
-            echo '  <td>' . $row['service_hopital'] . '</td>';
-            echo '  <td>' . $row['medecin_hopital'] . '</td>';
-            echo '  <td>' . $row['specialite_hopital'] . '</td>';
-            echo '  <td>' . $row['dateVisite_hopital'] . '</td>';
-            echo '  <td>' . $row['A_hopital'] . '</td>';
-            echo '  <td>' . $row['B_hopital'] . '</td>';
-            echo '  <td>' . $row['C_hopital'] . '</td>';
-            echo '  <td>' . $row['remarques_hopital'] . '</td>';
-            echo '  <td>' . $row['region_hopital'] . '</td>';
+            echo '  <td>' . $row1['code_hopital'] . '</td>';
+            echo '  <td>' . $row1['hopital'] . '</td>';
+            echo '  <td>' . $row1['service_hopital'] . '</td>';
+
+            $id_medecin = $row1['id_medecin'];
+            $sql2 = "SELECT * FROM ipsendb.medecin WHERE id_medecin='$id_medecin'";
+            $result2 = $conn->query($sql2);
+            $row2 = $result2->fetch_assoc();
+            echo '  <td><a href="../../Medecin/info_Medecin.php?id=' . $row2['id_medecin'] . '">' . $row2['nom_medecin'] . '</a></td>';
+            
+            echo '  <td>' . $row1['specialite_hopital'] . '</td>';
+            echo '  <td>' . $row1['dateVisite_hopital'] . '</td>';
+            echo '  <td>' . $row1['A_hopital'] . '</td>';
+            echo '  <td>' . $row1['B_hopital'] . '</td>';
+            echo '  <td>' . $row1['C_hopital'] . '</td>';
+            echo '  <td>' . $row1['remarques_hopital'] . '</td>';
+            echo '  <td>' . $row1['region_hopital'] . '</td>';
             echo '  <td>
-                        <a href="editer_Hopital.php?id=' . $row['id_hopital'] . '&fonction=editer">Editer</a>
-                        <a href="editer_Hopital.php?id=' . $row['id_hopital'] . '&fonction=supprimer">Supprimer</a>
+                        <a href="editer_Hopital.php?id=' . $row1['id_hopital'] . '&fonction=editer">Editer</a>
+                        <a href="editer_Hopital.php?id=' . $row1['id_hopital'] . '&fonction=supprimer">Supprimer</a>
                     </td>';
             echo '</tr>';
         }

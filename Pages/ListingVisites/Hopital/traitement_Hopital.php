@@ -9,7 +9,7 @@
     $code = $_POST['code'];
     $hopital = $_POST['hopital'];
     $service = $_POST['service'];
-    $medecin = $_POST['medecin'];
+    $id_medecin = $_POST['medecin'];
     $specialite = $_POST['specialite'];
     $dateVisite = $_POST['datevisite'];
     $a = $_POST['a'];
@@ -20,7 +20,7 @@
     
 
 
-    $obj = new Hopital($code, $hopital, $service, $medecin, $specialite, $dateVisite, $a, $b, $c, $remarque, $region);
+    $obj = new Hopital($code, $hopital, $service, $id_medecin, $specialite, $dateVisite, $a, $b, $c, $remarque, $region);
 
     $objConn = new Connexion();
     $conn = $objConn->connectToDB();

@@ -13,7 +13,7 @@
     $code = "";
     $hopital = "";
     $service = "";
-    $medecin = "";
+    $id_medecin = "";
     $specalite = "";
     $dateVisite = "";
     $a = "";
@@ -28,29 +28,26 @@
         if ($_GET['fonction'] == 'editer') {
             $id = $_GET['id'];
 
-            $sql = "SELECT * FROM hopital WHERE id_hopital='$id'";
-
+            $sql = "SELECT * FROM ipsendb.hopital WHERE id_hopital='$id'";
             $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $code = $row['code_hopital'];
-                    $hopital = $row['hopital'];
-                    $service = $row['service_hopital'];
-                    $medecin = $row['medecin_hopital'];
-                    $specalite = $row['specialite_hopital'];
-                    $dateVisite = $row['dateVisite_hopital'];
-                    $a = $row['A_hopital'];
-                    $b = $row['B_hopital'];
-                    $c = $row['C_hopital'];
-                    $remarque = $row['remarques_hopital'];
-                    $region = $row['region_hopital'];
-                }
-            }
+            $code = $row['code_hopital'];
+            $hopital = $row['hopital'];
+            $service = $row['service_hopital'];
+            $id_medecin = $row['id_medecin'];
+            $specalite = $row['specialite_hopital'];
+            $dateVisite = $row['dateVisite_hopital'];
+            $a = $row['A_hopital'];
+            $b = $row['B_hopital'];
+            $c = $row['C_hopital'];
+            $remarque = $row['remarques_hopital'];
+            $region = $row['region_hopital'];
+
         } elseif ($_GET['fonction'] == 'supprimer') {
             $id = $_GET['id'];
 
-            $sql = "DELETE FROM hopital WHERE id_hopital='$id'";
+            $sql = "DELETE FROM ipsendb.hopital WHERE id_hopital='$id'";
 
             $conn->query($sql);
 
@@ -65,7 +62,7 @@
         $code = $_POST['code'];
         $hopital=$_POST['hopital'];
         $service=$_POST['service'];
-        $medecin=$_POST['medecin'];
+        $id_medecin=$_POST['medecin'];
         $specalite = $_POST['specialite'];
         $dateVisite = $_POST['datevisite'];
         $a = $_POST['a'];
@@ -74,12 +71,14 @@
         $remarque = $_POST['remarque'];
         $region =$_POST['region'];
 
-        $obj = new Hopital($code, $hopital, $service, $medecin, $specalite, $dateVisite, $a, $b, $c, $remarque, $region);
+        $obj = new Hopital($code, $hopital, $service, $id_medecin, $specalite, $dateVisite, $a, $b, $c, $remarque, $region);
 
         $obj->updateData($conn, $id);
-    }
 
-    $objConn->closeConnection();
+        $objConn->closeConnection();
+
+        header('Location: afficher_Hopital.php');
+    }
 ?>
 
 <!doctype html>
@@ -102,7 +101,26 @@
     <input type="text" id="service" name="service" value="<?= $service ?>"><br>
 
     <label for="medecin">Medecin</label>
-    <input type="text" id="medecin" name="medecin" value="<?= $medecin ?>"><br>
+    <select id="medecin" name="medecin">
+        <?php
+        $sql = "SELECT * FROM ipsendb.medecin";
+
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if($id_medecin == $row['id_medecin']){
+                    echo '<option value="' . $row['id_medecin'] . '" selected>' . $row['nom_medecin'] . '</option>';
+                } else {
+                    echo '<option value="' . $row['id_medecin'] . '">' . $row['nom_medecin'] . '</option>';
+                }
+            }
+        }
+
+        $objConn->closeConnection();
+
+        ?>
+    </select><br>
 
     <label for="specialite">Spécialité</label>
     <input type="text" id="specialite" name="specialite" value="<?= $specalite ?>"><br>

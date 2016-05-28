@@ -23,6 +23,9 @@
     <file url="file://$PROJECT_DIR$/Pages/ListingVisites/CentreSante/afficher_CentreSante.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/ListingVisites/CentreSante/ajouter_CentreSante.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/ListingVisites/CentreSante/editer_CentreSante.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Hopital/afficher_Hopital.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Hopital/ajouter_Hopital.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/Pages/ListingVisites/Hopital/editer_Hopital.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/Medecin/info_Medecin.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/SyntheseHebdomadaire/EnqueteProduit/editer_EnqueteProduit.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/Pages/SyntheseHebdomadaire/SecteurPrive/editer_SecteurPrive.php" dialect="MySQL" />
